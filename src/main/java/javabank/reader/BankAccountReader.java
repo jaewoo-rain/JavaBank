@@ -14,25 +14,26 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+// System.in으로부터 BankAccount 정보를 읽어오는 클래스입니다.
 public class BankAccountReader implements Reader<BankAccount> {
 
     /**
-     * Abstract method that reads a BankAccount from the System.in
+     * System.in으로부터 BankAccount 정보를 읽어옵니다.
      *
-     * @return E, representing the read BankAccount
-     * @throws IOException, representing an exception
+     * @return BankAccount, 읽어온 BankAccount 객체
+     * @throws IOException, 입출력 예외 발생 시
      */
     @Override
     public BankAccount read() throws IOException {
-        System.out.println("Please introduce the bank account details!");
+        System.out.println("은행 계좌 정보를 입력해주세요!");
         Long idBankAccount = new ReaderID().read();
 
         String ibanCode;
-        System.out.print("IBAN Code: ");
+        System.out.print("IBAN 코드: ");
         ibanCode = bufferedReader.readLine();
 
         double balance;
-        System.out.println("Balance: ");
+        System.out.println("잔액: ");
         balance = Double.parseDouble(bufferedReader.readLine());
 
         InMemoryRepository<Long, Card> validCards = new InMemoryRepository<>(new CardValidator());

@@ -2,22 +2,23 @@ package javabank.domain;
 
 import java.util.Objects;
 
+// 은행 주소를 담는 엔티티 클래스입니다.
 public class BankAddress extends Entity<Long>{
-    private String streetName;
-    private int number;
-    private String cityName;
-    private String countyName;
-    private int postalCode;
-    private String countryName;
+    private String streetName; // 도로명
+    private int number; // 건물 번호
+    private String cityName; // 도시명
+    private String countyName; // 군/지역명
+    private int postalCode; // 우편번호
+    private String countryName; // 국가명
 
     /**
-     * Constructor that creates a new BankAddress
-     * @param streetName String,    representing the name of the street name where the bank is located
-     * @param number int,           representing the number of the bank building
-     * @param cityName String,      representing the name of the city where the bank is located
-     * @param countyName String,    representing the county name where the bank is located
-     * @param postalCode int,       representing the postal code of the bank
-     * @param countryName String,   representing the country name where the bank is located
+     * 새로운 BankAddress 객체를 생성하는 생성자입니다.
+     * @param streetName String, 은행이 위치한 도로명
+     * @param number int, 은행 건물의 번호
+     * @param cityName String, 은행이 위치한 도시명
+     * @param countyName String, 은행이 위치한 군/지역명
+     * @param postalCode int, 은행의 우편번호
+     * @param countryName String, 은행이 위치한 국가명
      */
     public BankAddress(String streetName, int number, String cityName, String countyName, int postalCode, String countryName) {
         this.streetName = streetName;
@@ -29,111 +30,123 @@ public class BankAddress extends Entity<Long>{
     }
 
     /**
-     * @return String, representing the street name where the bank is located
+     * 은행이 위치한 도로명을 반환합니다.
+     * @return String, 도로명
      */
     public String getStreetName() {
         return streetName;
     }
 
     /**
-     * @param streetName String, representing the new street name where the bank is located
+     * 은행이 위치한 도로명을 설정합니다.
+     * @param streetName String, 새로 설정할 도로명
      */
     public void setStreetName(String streetName) {
         this.streetName = streetName;
     }
 
     /**
-     * @return int, representing the number of the bank building
+     * 은행 건물의 번호를 반환합니다.
+     * @return int, 건물 번호
      */
     public int getNumber() {
         return number;
     }
 
     /**
-     * @param number int, representing the new number of the bank building
+     * 은행 건물의 번호를 설정합니다.
+     * @param number int, 새로 설정할 건물 번호
      */
     public void setNumber(int number) {
         this.number = number;
     }
 
     /**
-     * @return String, representing the name of the city where the bank is located
+     * 은행이 위치한 도시명을 반환합니다.
+     * @return String, 도시명
      */
     public String getCityName() {
         return cityName;
     }
 
     /**
-     * @param cityName String, representing the new name of the city where the bank is located
+     * 은행이 위치한 도시명을 설정합니다.
+     * @param cityName String, 새로 설정할 도시명
      */
     public void setCityName(String cityName) {
         this.cityName = cityName;
     }
 
     /**
-     * @return String, representing the county name where the bank is located
+     * 은행이 위치한 군/지역명을 반환합니다.
+     * @return String, 군/지역명
      */
     public String getCountyName() {
         return countyName;
     }
 
     /**
-     * @param countyName String, representing the new county name where the bank is located
+     * 은행이 위치한 군/지역명을 설정합니다.
+     * @param countyName String, 새로 설정할 군/지역명
      */
     public void setCountyName(String countyName) {
         this.countyName = countyName;
     }
 
     /**
-     * @return int, representing the postal code of the bank
+     * 은행의 우편번호를 반환합니다.
+     * @return int, 우편번호
      */
     public int getPostalCode() {
         return postalCode;
     }
 
     /**
-     * @param postalCode int, representing the new postal code of the bank
+     * 은행의 우편번호를 설정합니다.
+     * @param postalCode int, 새로 설정할 우편번호
      */
     public void setPostalCode(int postalCode) {
         this.postalCode = postalCode;
     }
 
     /**
-     * @return String, representing the country name where the bank is located
+     * 은행이 위치한 국가명을 반환합니다.
+     * @return String, 국가명
      */
     public String getCountryName() {
         return countryName;
     }
 
     /**
-     * @param countryName String, representing the new country name where the bank is located
+     * 은행이 위치한 국가명을 설정합니다.
+     * @param countryName String, 새로 설정할 국가명
      */
     public void setCountryName(String countryName) {
         this.countryName = countryName;
     }
 
     /**
-     *
-     * @return String, representing the serialization of a BankAddress
+     * BankAddress 객체의 문자열 표현을 반환합니다.
+     * @return String, BankAddress 객체의 직렬화된 문자열
      */
     @Override
     public String toString() {
         return "BankAddress{" +
-                "ID='" + getId() + '\'' +
-                ", streetName='" + streetName + '\'' +
-                ", number=" + number +
-                ", cityName='" + cityName + '\'' +
-                ", countyName='" + countyName + '\'' +
-                ", postalCode=" + postalCode +
-                ", countryName='" + countryName + '\'' +
+                "ID='" + getId() + "'" + 
+                ", streetName='" + streetName + "'" + 
+                ", number=" + number + 
+                ", cityName='" + cityName + "'" + 
+                ", countyName='" + countyName + "'" + 
+                ", postalCode=" + postalCode + 
+                ", countryName='" + countryName + "'" + 
                 '}';
     }
 
     /**
-     * Method that verifies if two BankAddress objects are equal
-     * @param obj Object, representing the Object to be verified
-     * @return  true,   if the address of the BankAddress is equal to the address of the Object
-     *          false,  otherwise
+     * 두 BankAddress 객체가 동일한지 확인합니다.
+     * @param obj Object, 비교할 객체
+     * @return  true, 주소의 모든 필드가 동일할 경우
+     *          false, 그렇지 않을 경우
      */
     @Override
     public boolean equals(Object obj) {
@@ -145,8 +158,8 @@ public class BankAddress extends Entity<Long>{
     }
 
     /**
-     * Method that gets the hashCode of the BankAddress
-     * @return int, representing the hashCode of the BankAddress
+     * BankAddress 객체의 해시코드를 반환합니다.
+     * @return int, BankAddress 객체의 해시코드
      */
     @Override
     public int hashCode() {

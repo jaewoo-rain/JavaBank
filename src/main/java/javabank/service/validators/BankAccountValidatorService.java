@@ -3,28 +3,29 @@ package javabank.service.validators;
 import javabank.domain.BankAccount;
 import javabank.domain.validators.ValidationException;
 
+// BankAccount 엔티티에 대한 서비스 레벨의 유효성 검사를 수행하는 클래스입니다.
 public class BankAccountValidatorService implements ValidatorService<BankAccount> {
     /**
-     * Abstract method that validates a BankAccount entity upon adding
-     * @param entity BankAccount, representing the entity to be validated
-     * @throws ValidationException, an exception
+     * BankAccount 엔티티 추가 시 유효성을 검사합니다.
+     * @param entity BankAccount, 유효성을 검사할 엔티티
+     * @throws ValidationException, 추가하려는 은행 계좌가 이미 존재할 경우
      */
     @Override
     public void validateAdd(BankAccount entity) throws ValidationException {
         if (entity != null) {
-            throw new ValidationException("The bank account to be added already exists!");
+            throw new ValidationException("추가하려는 은행 계좌가 이미 존재합니다!");
         }
     }
 
     /**
-     * Abstract method that validates a BankAccount entity upon deletion
-     * @param entity BankAccount, representing the entity to be validated
-     * @throws ValidationException, an exception
+     * BankAccount 엔티티 삭제 시 유효성을 검사합니다.
+     * @param entity BankAccount, 유효성을 검사할 엔티티
+     * @throws ValidationException, 삭제하려는 은행 계좌가 존재하지 않을 경우
      */
     @Override
     public void validateDelete(BankAccount entity) throws ValidationException {
         if (entity == null) {
-            throw new ValidationException("The bank account to be deleted doesn't exists!");
+            throw new ValidationException("삭제하려는 은행 계좌가 존재하지 않습니다!");
         }
     }
 }

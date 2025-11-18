@@ -10,22 +10,23 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+// Bank 엔티티의 유효성을 검사하는 클래스입니다.
 public class BankValidator implements Validator<Bank> {
     /**
-     * Method that validates a Bank entity
+     * Bank 엔티티의 유효성을 검사합니다.
      *
-     * @param entity Bank, representing the entity to be validate
-     * @throws ValidationException, if the Bank is invalid
+     * @param entity Bank, 유효성을 검사할 엔티티
+     * @throws ValidationException, Bank가 유효하지 않을 경우
      */
     @Override
     public void validate(Bank entity) throws ValidationException {
         String errors = "";
 
         if (entity.getId() < 0 ) {
-            errors += "The ID of the BankAddress can't be a negative number!\n";
+            errors += "은행 주소 ID는 음수일 수 없습니다!\n";
         }
         if (!entity.getBankName().matches("^[a-zA-Z\\s]*$")) {
-            errors += "The bank name can't be an empty value and it can't contain digits!\n";
+            errors += "은행 이름은 비어 있을 수 없으며 숫자를 포함할 수 없습니다!\n";
         }
 
         try {
@@ -37,13 +38,13 @@ public class BankValidator implements Validator<Bank> {
         }
 
         if (!TelephoneNumberValidator.validateTelephoneNumber(entity.getHqTelephoneNumber())) {
-            errors += "The telephone number is invalid!\n";
+            errors += "전화번호가 유효하지 않습니다!\n";
         }
         if (!EmailValidator.validateEmail(entity.getHqEmail())) {
-            errors += "The email address is invalid!\n";
+            errors += "이메일 주소가 유효하지 않습니다!\n";
         }
         if (!WebsiteValidator.validateWebsite(entity.getWebsite())) {
-            errors += "The URL address is invalid!";
+            errors += "URL 주소가 유효하지 않습니다!";
         }
 
         try {

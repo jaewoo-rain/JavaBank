@@ -3,30 +3,31 @@ package javabank.service.validators;
 import javabank.domain.BankBranch;
 import javabank.domain.validators.ValidationException;
 
+// BankBranch 엔티티에 대한 서비스 레벨의 유효성 검사를 수행하는 클래스입니다.
 public class BankBranchValidatorService implements ValidatorService<BankBranch> {
     /**
-     * Abstract method that validates a T entity upon adding
+     * BankBranch 엔티티 추가 시 유효성을 검사합니다.
      *
-     * @param entity T, representing the entity to be validated
-     * @throws ValidationException, an exception
+     * @param entity BankBranch, 유효성을 검사할 엔티티
+     * @throws ValidationException, 추가하려는 은행 지점이 이미 존재할 경우
      */
     @Override
     public void validateAdd(BankBranch entity) throws ValidationException {
         if (entity != null) {
-            throw new ValidationException("The bank branch to be added already exists!");
+            throw new ValidationException("추가하려는 은행 지점이 이미 존재합니다!");
         }
     }
 
     /**
-     * Abstract method that validates a T entity upon deletion
+     * BankBranch 엔티티 삭제 시 유효성을 검사합니다.
      *
-     * @param entity T, representing the entity to be validated
-     * @throws ValidationException, an exception
+     * @param entity BankBranch, 유효성을 검사할 엔티티
+     * @throws ValidationException, 삭제하려는 은행 지점이 존재하지 않을 경우
      */
     @Override
     public void validateDelete(BankBranch entity) throws ValidationException {
         if (entity == null) {
-            throw new ValidationException("The bank branch to be deleted doesn't exists!");
+            throw new ValidationException("삭제하려는 은행 지점이 존재하지 않습니다!");
         }
     }
 }

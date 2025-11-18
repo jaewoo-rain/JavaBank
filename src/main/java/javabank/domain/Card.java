@@ -3,20 +3,21 @@ package javabank.domain;
 import java.util.Date;
 import java.util.Objects;
 
+// 카드 정보를 담는 엔티티 클래스입니다.
 public class Card extends Entity<Long>{
-    private String cardNumber;
-    private String cardHolder;
-    private Date validThru;
-    private int cvvCode;
-    private int PIN;
+    private String cardNumber; // 카드 번호
+    private String cardHolder; // 카드 소유자 이름
+    private Date validThru;    // 카드 유효 기간
+    private int cvvCode;       // CVV 코드
+    private int PIN;           // PIN 번호
 
     /**
-     * Constructor that creates a new Card
-     * @param cardNumber String,    representing the card number of the Card
-     * @param cardHolder String,    representing the name of the Card's holder
-     * @param validThru Date,       representing the expiry date of the Card
-     * @param cvvCode int,          representing the CVV code of the Card
-     * @param PIN int,              representing the PIN code of the Card
+     * 새로운 Card 객체를 생성하는 생성자입니다.
+     * @param cardNumber String, 카드의 번호
+     * @param cardHolder String, 카드의 소유자 이름
+     * @param validThru Date, 카드의 유효 기간
+     * @param cvvCode int, 카드의 CVV 코드
+     * @param PIN int, 카드의 PIN 번호
      */
     public Card(String cardNumber, String cardHolder, Date validThru, int cvvCode, int PIN) {
         this.cardNumber = cardNumber;
@@ -27,84 +28,95 @@ public class Card extends Entity<Long>{
     }
 
     /**
-     * @return String, representing the card number of the Card
+     * 카드의 번호를 반환합니다.
+     * @return String, 카드의 번호
      */
     public String getCardNumber() {
         return cardNumber;
     }
 
     /**
-     * @param cardNumber String, representing the new card number of the Card
+     * 카드의 번호를 설정합니다.
+     * @param cardNumber String, 새로 설정할 카드의 번호
      */
     public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
 
     /**
-     * @return String, representing the name of the Card's holder
+     * 카드의 소유자 이름을 반환합니다.
+     * @return String, 카드의 소유자 이름
      */
     public String getCardHolder() {
         return cardHolder;
     }
 
     /**
-     * @param cardHolder String, representing the new name of the Card's holder
+     * 카드의 소유자 이름을 설정합니다.
+     * @param cardHolder String, 새로 설정할 카드의 소유자 이름
      */
     public void setCardHolder(String cardHolder) {
         this.cardHolder = cardHolder;
     }
 
     /**
-     * @return Date, representing the expiry dat of the Card
+     * 카드의 유효 기간을 반환합니다.
+     * @return Date, 카드의 유효 기간
      */
     public Date getValidThru() {
         return validThru;
     }
 
     /**
-     * @param validThru Date, representing the new expiry dat of the Card
+     * 카드의 유효 기간을 설정합니다.
+     * @param validThru Date, 새로 설정할 카드의 유효 기간
      */
     public void setValidThru(Date validThru) {
         this.validThru = validThru;
     }
 
     /**
-     * @return int, representing the CVV code of the Card
+     * 카드의 CVV 코드를 반환합니다.
+     * @return int, 카드의 CVV 코드
      */
     public int getCvvCode() {
         return cvvCode;
     }
 
     /**
-     * @param cvvCode int, representing the new CVV code of the Card
+     * 카드의 CVV 코드를 설정합니다.
+     * @param cvvCode int, 새로 설정할 카드의 CVV 코드
      */
     public void setCvvCode(int cvvCode) {
         this.cvvCode = cvvCode;
     }
 
     /**
-     * @return int, representing the PIN code of the Card
+     * 카드의 PIN 번호를 반환합니다.
+     * @return int, 카드의 PIN 번호
      */
     public int getPIN() {
         return PIN;
     }
 
     /**
-     * @param PIN int, representing the new PIN code of the Card
+     * 카드의 PIN 번호를 설정합니다.
+     * @param PIN int, 새로 설정할 카드의 PIN 번호
      */
     public void setPIN(int PIN) {
         this.PIN = PIN;
     }
 
     /**
-     * @return String, representing the serialization of a Card
+     * Card 객체의 문자열 표현을 반환합니다.
+     * @return String, Card 객체의 직렬화된 문자열
      */
     @Override
     public String toString() {
         return "Card{" +
-                "ID='" + getId() + '\'' +
-                ", cardNumber='" + cardNumber + '\'' +
-                ", cardHolder='" + cardHolder + '\'' +
+                "ID='" + getId() + "'" +
+                ", cardNumber='" + cardNumber + "'" +
+                ", cardHolder='" + cardHolder + "'" +
                 ", validThru=" + validThru +
                 ", cvvCode=" + cvvCode +
                 ", PIN=" + PIN +
@@ -112,14 +124,10 @@ public class Card extends Entity<Long>{
     }
 
     /**
-     * Method that verifies if two Card objects are equal
-     * @param obj Object, representing the Object to be verified
-     * @return  true,   if the cvvCode of the Card is equal to the cvvCode of the Object,
-     *                  the PIN of the Card is equal to the PIN of the Object,
-     *                  the cardNumber of the Card is equal to the cardNumber of the Object,
-     *                  the cardHolder of the Card is equal to the cardHolder of the Object,
-     *                  and the validThru of the Card is equal to the validThru of the Object
-     *          false,  otherwise
+     * 두 Card 객체가 동일한지 확인합니다.
+     * @param obj Object, 비교할 객체
+     * @return  true, 모든 필드가 동일할 경우
+     *          false, 그렇지 않을 경우
      */
     @Override
     public boolean equals(Object obj) {
@@ -130,8 +138,8 @@ public class Card extends Entity<Long>{
     }
 
     /**
-     * Method that gets the hashCode of the Card
-     * @return int, representing the hashCode of the Card
+     * Card 객체의 해시코드를 반환합니다.
+     * @return int, Card 객체의 해시코드
      */
     @Override
     public int hashCode() {

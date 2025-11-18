@@ -6,23 +6,24 @@ import javabank.utils.security.PasswordEncryption;
 import java.io.IOException;
 
 
+// System.in으로부터 ClientCredentials 정보를 읽어오는 클래스입니다.
 public class ClientCredentialsReader implements Reader<ClientCredentials> {
     /**
-     * Method that reads a ClientCredentials from System.in
-     * @return ClientCredentials, representing the read ClientCredentials
-     * @throws IOException, representing an exception
+     * System.in으로부터 ClientCredentials 정보를 읽어옵니다.
+     * @return ClientCredentials, 읽어온 ClientCredentials 객체
+     * @throws IOException, 입출력 예외 발생 시
      */
     @Override
     public ClientCredentials read() throws IOException {
-        System.out.println("Please introduce client credentials!");
+        System.out.println("고객 로그인 정보를 입력해주세요!");
         Long idClientCredentials = new ReaderID().read();
 
         String username;
-        System.out.print("Username: ");
+        System.out.print("사용자 이름: ");
         username = bufferedReader.readLine();
 
         String password;
-        System.out.print("Password: ");
+        System.out.print("비밀번호: ");
         password = bufferedReader.readLine();
 
         String salt = PasswordEncryption.getSalt(30);

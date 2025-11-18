@@ -10,22 +10,23 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+// BankBranch 엔티티의 유효성을 검사하는 클래스입니다.
 public class BankBranchValidator implements Validator<BankBranch> {
     /**
-     * Method that validates a BankBranch entity
+     * BankBranch 엔티티의 유효성을 검사합니다.
      *
-     * @param entity BankBranch, representing the entity to be validate
-     * @throws ValidationException, if the BankBranch is invalid
+     * @param entity BankBranch, 유효성을 검사할 엔티티
+     * @throws ValidationException, BankBranch가 유효하지 않을 경우
      */
     @Override
     public void validate(BankBranch entity) throws ValidationException {
         String errors = "";
 
         if (entity.getBicCode().matches("[ ]*")) {
-            errors += "The BIC code can't be an empty value!\n";
+            errors += "BIC 코드는 비어 있을 수 없습니다!\n";
         }
         if (entity.getSwiftCode().matches("[ ]*")) {
-            errors += "The SWIFT code can't be an empty value!\n";
+            errors += "SWIFT 코드는 비어 있을 수 없습니다!\n";
         }
 
         try {
@@ -37,10 +38,10 @@ public class BankBranchValidator implements Validator<BankBranch> {
         }
 
         if (!TelephoneNumberValidator.validateTelephoneNumber(entity.getBankTelephoneNumber())) {
-            errors += "The telephone number is invalid!\n";
+            errors += "전화번호가 유효하지 않습니다!\n";
         }
         if (!EmailValidator.validateEmail(entity.getBankEmail())) {
-            errors += "The email address is invalid!\n";
+            errors += "이메일 주소가 유효하지 않습니다!\n";
         }
 
         try {

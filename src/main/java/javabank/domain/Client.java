@@ -5,24 +5,25 @@ import javabank.repository.memory.InMemoryRepository;
 import java.util.ArrayList;
 import java.util.Objects;
 
+// 고객 정보를 담는 엔티티 클래스입니다.
 public class Client extends Entity<Long> {
-    private String firstName;
-    private String lastName;
-    private String CNP;
-    private String telephoneNumber;
-    private String email;
-    private ClientCredentials credentials;
-    private InMemoryRepository<Long, BankAccount> bankAccounts;
+    private String firstName; // 고객의 이름
+    private String lastName; // 고객의 성
+    private String CNP; // 고객의 주민등록번호 (고유 식별 번호)
+    private String telephoneNumber; // 고객의 전화번호
+    private String email; // 고객의 이메일 주소
+    private ClientCredentials credentials; // 고객의 로그인 정보
+    private InMemoryRepository<Long, BankAccount> bankAccounts; // 고객의 은행 계좌 목록
 
     /**
-     * Constructor that creates a new Client
-     * @param firstName String,                                     representing the first name of the Client
-     * @param lastName String,                                      representing the last name of the Client
-     * @param CNP String,                                           representing the CNP (Identity Card) of the Client
-     * @param telephoneNumber String,                               representing the telephone number of the Client
-     * @param email String,                                         representing the email address of the Client
-     * @param credentials ClientCredentials,                        representing the Client's credentials
-     * @param bankAccounts InMemoryRepository<Long, BankAccount>,   representing a list of Client's bank accounts
+     * 새로운 Client 객체를 생성하는 생성자입니다.
+     * @param firstName String, 고객의 이름
+     * @param lastName String, 고객의 성
+     * @param CNP String, 고객의 주민등록번호
+     * @param telephoneNumber String, 고객의 전화번호
+     * @param email String, 고객의 이메일 주소
+     * @param credentials ClientCredentials, 고객의 로그인 정보
+     * @param bankAccounts InMemoryRepository<Long, BankAccount>, 고객의 은행 계좌 목록
      */
     public Client(String firstName, String lastName, String CNP, String telephoneNumber, String email, ClientCredentials credentials, InMemoryRepository<Long, BankAccount> bankAccounts) {
         this.firstName = firstName;
@@ -35,130 +36,140 @@ public class Client extends Entity<Long> {
     }
 
     /**
-     * @return String, representing the first name of the Client
+     * 고객의 이름을 반환합니다.
+     * @return String, 고객의 이름
      */
     public String getFirstName() {
         return firstName;
     }
 
     /**
-     * @param firstName String, representing the new first name of the Client
+     * 고객의 이름을 설정합니다.
+     * @param firstName String, 새로 설정할 고객의 이름
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
     /**
-     * @return String, representing the last name of the Client
+     * 고객의 성을 반환합니다.
+     * @return String, 고객의 성
      */
     public String getLastName() {
         return lastName;
     }
 
     /**
-     * @param lastName String, representing the new last name of the Client
+     * 고객의 성을 설정합니다.
+     * @param lastName String, 새로 설정할 고객의 성
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
     /**
-     * @return String, representing the CNP (Identity Card) of the Client
+     * 고객의 주민등록번호를 반환합니다.
+     * @return String, 고객의 주민등록번호
      */
     public String getCNP() {
         return CNP;
     }
 
     /**
-     * @param CNP String, representing the new CNP (Identity Card) of the Client
+     * 고객의 주민등록번호를 설정합니다.
+     * @param CNP String, 새로 설정할 고객의 주민등록번호
      */
     public void setCNP(String CNP) {
         this.CNP = CNP;
     }
 
     /**
-     * @return String, representing the telephone number of the Client
+     * 고객의 전화번호를 반환합니다.
+     * @return String, 고객의 전화번호
      */
     public String getTelephoneNumber() {
         return telephoneNumber;
     }
 
     /**
-     * @param telephoneNumber String, representing the new telephone number of the Client
+     * 고객의 전화번호를 설정합니다.
+     * @param telephoneNumber String, 새로 설정할 고객의 전화번호
      */
     public void setTelephoneNumber(String telephoneNumber) {
         this.telephoneNumber = telephoneNumber;
     }
 
     /**
-     * @return String, representing the email address of the Client
+     * 고객의 이메일 주소를 반환합니다.
+     * @return String, 고객의 이메일 주소
      */
     public String getEmail() {
         return email;
     }
 
     /**
-     * @param email String, representing the new email address of the Client
+     * 고객의 이메일 주소를 설정합니다.
+     * @param email String, 새로 설정할 고객의 이메일 주소
      */
     public void setEmail(String email) {
         this.email = email;
     }
 
     /**
-     * @return ClientCredentials, representing the Client's credentials
+     * 고객의 로그인 정보를 반환합니다.
+     * @return ClientCredentials, 고객의 로그인 정보
      */
     public ClientCredentials getCredentials() {
         return credentials;
     }
 
     /**
-     * @param credentials ClientCredentials, representing the new Client's credentials
+     * 고객의 로그인 정보를 설정합니다.
+     * @param credentials ClientCredentials, 새로 설정할 고객의 로그인 정보
      */
     public void setCredentials(ClientCredentials credentials) {
         this.credentials = credentials;
     }
 
     /**
-     * @return InMemoryRepository<Long, BankAccount>, representing a repository of Client's bank accounts
+     * 고객의 은행 계좌 목록을 반환합니다.
+     * @return InMemoryRepository<Long, BankAccount>, 고객의 은행 계좌 레포지토리
      */
     public InMemoryRepository<Long, BankAccount> getBankAccounts() {
         return bankAccounts;
     }
 
     /**
-     * @param bankAccounts InMemoryRepository<Long, BankAccount>, representing a new repository of Client's bank accounts
+     * 고객의 은행 계좌 목록을 설정합니다.
+     * @param bankAccounts InMemoryRepository<Long, BankAccount>, 새로 설정할 고객의 은행 계좌 레포지토리
      */
     public void setBankAccounts(InMemoryRepository<Long, BankAccount> bankAccounts) {
         this.bankAccounts = bankAccounts;
     }
 
     /**
-     * @return String, representing the serialization of a Client
+     * Client 객체의 문자열 표현을 반환합니다.
+     * @return String, Client 객체의 직렬화된 문자열
      */
     @Override
     public String toString() {
-        return "Client{" +
-                "ID='" + getId() + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", CNP='" + CNP + '\'' +
-                ", telephoneNumber='" + telephoneNumber + '\'' +
-                ", email='" + email + '\'' +
+        return "Client{"
+                + "ID='" + getId() + "'" +
+                ", firstName='" + firstName + "'" +
+                ", lastName='" + lastName + "'" +
+                ", CNP='" + CNP + "'" +
+                ", telephoneNumber='" + telephoneNumber + "'" +
+                ", email='" + email + "'" +
                 ", credentials=" + credentials +
                 ", bankAccounts=" + bankAccounts +
                 '}';
     }
 
     /**
-     * @param obj Object, representing the Object to be verified
-     * @return  true,   if the firstName of the Client is equal to the firstName of the Object,
-     *                  the lastName of the Client is equal to the lastName of the Object,
-     *                  the CNP of the Client is equal to the CNP of the Object,
-     *                  the telephoneNumber of the Client is equal to the telephoneNumber of the Object,
-     *                  the email of the Client is equal to the email of the Object,
-     *                  the credentials of the Client is equal to the credentials of the Object,
-     *                  and the bankAccounts list of Client is equal to the bankAccounts list of the Object
-     *          false,  otherwise
+     * 두 Client 객체가 동일한지 확인합니다.
+     * @param obj Object, 비교할 객체
+     * @return  true, 모든 필드가 동일할 경우
+     *          false, 그렇지 않을 경우
      */
     @Override
     public boolean equals(Object obj) {
@@ -170,7 +181,8 @@ public class Client extends Entity<Long> {
     }
 
     /**
-     * @return int, representing the hashCode of the Client
+     * Client 객체의 해시코드를 반환합니다.
+     * @return int, Client 객체의 해시코드
      */
     @Override
     public int hashCode() {

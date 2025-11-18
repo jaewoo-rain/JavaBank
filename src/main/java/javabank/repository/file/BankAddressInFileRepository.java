@@ -3,20 +3,21 @@ package javabank.repository.file;
 import javabank.domain.BankAddress;
 import javabank.domain.validators.Validator;
 
+// 파일로부터 BankAddress 정보를 읽고 쓰는 리포지토리 클래스입니다.
 public class BankAddressInFileRepository extends AbstractInFileRepository<Long, BankAddress> {
     /**
-     * Constructor that creates a new BankAddressFileRepository
-     * @param fileName  String, representing the name of the file where the data is loaded from / stored to
-     * @param validator Validator<BankAddress>, representing the validator of the BankAddressFileRepository
+     * 새로운 BankAddressInFileRepository를 생성하는 생성자입니다.
+     * @param fileName  String, 데이터가 로드되거나 저장될 파일의 이름
+     * @param validator Validator<BankAddress>, BankAddressFileRepository의 유효성 검사기
      */
     public BankAddressInFileRepository(String fileName, Validator<BankAddress> validator) {
         super(fileName, validator);
     }
 
     /**
-     * Method that extracts a BankAddress having a specified list of attributes
-     * @param attributes String[], representing the attributes of the BankAddress to be extracted
-     * @return BankAddress, representing the extracted BankAddress based on the given attributes
+     * 지정된 속성 목록을 사용하여 BankAddress를 추출합니다.
+     * @param attributes String[], 추출할 BankAddress의 속성
+     * @return BankAddress, 주어진 속성을 기반으로 추출된 BankAddress
      */
     @Override
     public BankAddress extractEntity(String[] attributes) {
@@ -27,9 +28,9 @@ public class BankAddressInFileRepository extends AbstractInFileRepository<Long, 
     }
 
     /**
-     * Method that creates a list of String attributes for CSVReader
-     * @param entity BankAddress, representing the entity whose list of attributes is being determined
-     * @return String[], representing the list of attributes
+     * CSV 저장을 위해 BankAddress 엔티티를 문자열 배열로 변환합니다.
+     * @param entity BankAddress, 속성 목록을 결정할 엔티티
+     * @return String[], 속성 목록
      */
     @Override
     public String[] createEntityAsStringList(BankAddress entity) {

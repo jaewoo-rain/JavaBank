@@ -11,22 +11,23 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+// BankAccount 엔티티의 유효성을 검사하는 클래스입니다.
 public class BankAccountValidator implements Validator<BankAccount> {
     /**
-     * Method that validates a BankAccount entity
+     * BankAccount 엔티티의 유효성을 검사합니다.
      *
-     * @param entity BankAccount, representing the entity to be validate
-     * @throws ValidationException, if the BankAccount is invalid
+     * @param entity BankAccount, 유효성을 검사할 엔티티
+     * @throws ValidationException, BankAccount가 유효하지 않을 경우
      */
     @Override
     public void validate(BankAccount entity) throws ValidationException {
         String errors = "";
 
         if (entity.getId() < 0 ) {
-            errors += "The ID of the BankAddress can't be a negative number!\n";
+            errors += "은행 계좌 ID는 음수일 수 없습니다!\n";
         }
         if (!IBANValidator.getInstance().isValid(entity.getIbanCode())) {
-            errors += "The IBAN code is invalid!";
+            errors += "IBAN 코드가 유효하지 않습니다!";
         }
 
         try {
@@ -51,11 +52,15 @@ public class BankAccountValidator implements Validator<BankAccount> {
         }
     }
 
+    /**
+     * 은행 거래(Operation)와 카드(Card)의 튜플에 대한 유효성을 검사합니다.
+     * @param entity Operation과 Card의 튜플
+     */
     public static void validateBankingOperation(Tuple<Operation, Card> entity) {
         String errors = "";
 
         if (entity.getId() < 0 ) {
-            errors += "The ID of the BankAddress can't be a negative number!\n";
+            errors += "은행 계좌 ID는 음수일 수 없습니다!\n";
         }
 
         try {

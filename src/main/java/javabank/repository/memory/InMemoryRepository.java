@@ -9,13 +9,14 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
+// 메모리 내에서 CRUD 작업을 수행하는 리포지토리 클래스입니다.
 public class InMemoryRepository<ID, E extends Entity<ID>> implements AbstractRepository<ID, E> {
-    private final Validator<E> validator;
-    protected Map<ID, E> entities;
+    private final Validator<E> validator; // 엔티티 유효성 검사기
+    protected Map<ID, E> entities; // 엔티티를 저장하는 맵
 
     /**
-     * Constructor that creates a new InMemoryRepository
-     * @param validator Validator<E>, representing the validator of the InMemoryRepository
+     * 새로운 InMemoryRepository를 생성하는 생성자입니다.
+     * @param validator Validator<E>, InMemoryRepository의 유효성 검사기
      */
     public InMemoryRepository(Validator<E> validator) {
         this.validator = validator;
@@ -23,25 +24,23 @@ public class InMemoryRepository<ID, E extends Entity<ID>> implements AbstractRep
     }
 
     /**
-     * Method that gets a specific entity in the Repository
-     * @param id ID, representing the id of the entity to be returned
-     *               id must not be null
-     * @return E,   representing the entity with the specified id
-     *              or null, if there is no entity with the given id
-     * @throws IllegalArgumentException if the id is null
+     * 리포지토리에서 특정 엔티티를 조회합니다.
+     * @param id ID, 반환될 엔티티의 ID (null이 아니어야 함)
+     * @return E, 지정된 ID를 가진 엔티티, 없으면 null
+     * @throws IllegalArgumentException ID가 null일 경우
      */
     @Override
     public E findOne(ID id) {
         if (id == null) {
-            throw new IllegalArgumentException("ID must be not null");
+            throw new IllegalArgumentException("ID는 null일 수 없습니다.");
         }
         return entities.get(id);
     }
 
     /**
-     * Method that gets all the entities in the Repository
+     * 리포지토리의 모든 엔티티를 조회합니다.
      *
-     * @return Iterable<E>, representing all the entities
+     * @return Iterable<E>, 모든 엔티티
      */
     @Override
     public Iterable<E> findAll() {
@@ -49,18 +48,16 @@ public class InMemoryRepository<ID, E extends Entity<ID>> implements AbstractRep
     }
 
     /**
-     * Method that adds a new entity to the Repository
-     * @param entity E, representing the entity to be added
-     *                  entity must be not null
-     * @return  null,       if the given entity is saved
-     *          the entity, otherwise
-     * @throws ValidationException, if the entity is not valid
-     * @throws IllegalArgumentException, if the given entity is null
+     * 리포지토리에 새로운 엔티티를 추가합니다.
+     * @param entity E, 추가될 엔티티 (null이 아니어야 함)
+     * @return  null, 엔티티가 성공적으로 저장된 경우, 그렇지 않으면 해당 엔티티
+     * @throws ValidationException, 엔티티가 유효하지 않을 경우
+     * @throws IllegalArgumentException, 주어진 엔티티가 null일 경우
      */
     @Override
     public E save(E entity) throws ParseException {
         if (entity == null) {
-            throw new IllegalArgumentException("Entity must be not null");
+            throw new IllegalArgumentException("엔티티는 null일 수 없습니다.");
         }
         validator.validate(entity);
         if (entities.get(entity.getId()) != null) {
@@ -71,31 +68,31 @@ public class InMemoryRepository<ID, E extends Entity<ID>> implements AbstractRep
     }
 
     /**
-     * Method that removes the entity with the specified id from the Repository
+     * 지정된 ID의 엔티티를 리포지토리에서 삭제합니다.
      *
-     * @param id ID, representing the id of the entity to be deleted
-     *           id must not be null
-     * @return the removed entity or null, if there is no entity with the given id
-     * @throws IllegalArgumentException, if the given id is null
+     * @param id ID, 삭제될 엔티티의 ID (null이 아니어야 함)
+     * @return 삭제된 엔티티, 해당 ID의 엔티티가 없으면 null
+     * @throws IllegalArgumentException, 주어진 ID가 null일 경우
      */
     @Override
     public E delete(ID id) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID는 null일 수 없습니다.");
+        }
         return entities.remove(id);
     }
 
     /**
-     * Method that updates an entity in the Repository
-     * @param entity E, representing the new entity
-     *               entity must not be null
-     * @return null,    if the entity is updated
-     *                  the entity, otherwise
-     * @throws IllegalArgumentException, if the given entity is null
-     * @throws ValidationException, id the entity is not valid
+     * 리포지토리의 엔티티를 수정합니다.
+     * @param entity E, 수정될 엔티티 (null이 아니어야 함)
+     * @return null, 엔티티가 성공적으로 수정된 경우, 그렇지 않으면 해당 엔티티
+     * @throws IllegalArgumentException, 주어진 엔티티가 null일 경우
+     * @throws ValidationException, 엔티티가 유효하지 않을 경우
      */
     @Override
     public E update(E entity) throws ParseException {
         if (entity == null) {
-            throw new IllegalArgumentException("Entity must be not null");
+            throw new IllegalArgumentException("엔티티는 null일 수 없습니다.");
         }
         validator.validate(entity);
         entities.put(entity.getId(), entity);

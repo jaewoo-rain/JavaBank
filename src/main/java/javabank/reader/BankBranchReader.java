@@ -9,23 +9,24 @@ import javabank.repository.memory.InMemoryRepository;
 import java.io.IOException;
 import java.util.ArrayList;
 
+// System.in으로부터 BankBranch 정보를 읽어오는 클래스입니다.
 public class BankBranchReader implements Reader<BankBranch> {
     /**
-     * Method that reads a BankBranch from the System.in
-     * @return BankBranch, representing the read Bank
-     * @throws IOException, representing an exception
+     * System.in으로부터 BankBranch 정보를 읽어옵니다.
+     * @return BankBranch, 읽어온 BankBranch 객체
+     * @throws IOException, 입출력 예외 발생 시
      */
     @Override
     public BankBranch read() throws IOException {
-        System.out.println("Please introduce bank branch details!");
+        System.out.println("은행 지점 정보를 입력해주세요!");
         Long idBankBranch = new ReaderID().read();
 
         String bicCode;
-        System.out.print("BIC Code: ");
+        System.out.print("BIC 코드: ");
         bicCode = bufferedReader.readLine();
 
         String swiftCode;
-        System.out.print("SWIFT Code: ");
+        System.out.print("SWIFT 코드: ");
         swiftCode = bufferedReader.readLine();
 
         BankAddress bankAddress;
@@ -33,11 +34,11 @@ public class BankBranchReader implements Reader<BankBranch> {
         bankAddress = bankAddressReader.read();
 
         String bankTelephoneNumber;
-        System.out.print("Telephone number: ");
+        System.out.print("전화번호: ");
         bankTelephoneNumber = bufferedReader.readLine();
 
         String bankEmail;
-        System.out.print("Email address: ");
+        System.out.print("이메일 주소: ");
         bankEmail = bufferedReader.readLine();
 
         InMemoryRepository<Long, Client> clients = new InMemoryRepository<>(new ClientValidator());
